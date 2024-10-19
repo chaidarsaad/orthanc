@@ -1,8 +1,8 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $patientID = $_POST['patientID'];
-    $startDate = str_replace('-', '', $_POST['startDate']);
-    $endDate = str_replace('-', '', $_POST['endDate']);
+    $startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
 
     $url = 'http://localhost:8042/tools/find';
     $data = json_encode([
@@ -39,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $fileSize = $instance['FileSize'];
                 $mainDicomTags = $instance['MainDicomTags'];
 
+                // Tampilkan informasi JSON
                 echo '<pre>';
                 echo json_encode([
                     'FileSize' => $fileSize,
@@ -51,6 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 ], JSON_PRETTY_PRINT);
                 echo '</pre>';
 
+                // Menampilkan gambar menggunakan UUID
                 echo '<img src="http://localhost:8042/instances/' . $fileUuid . '/preview" alt="Preview Gambar" />';
             }
         } else {

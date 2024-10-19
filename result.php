@@ -53,6 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (!empty($results)) {
         echo '<h1>Hasil Pencarian</h1>';
+        $totalResults = count($results);
+        echo "<h2>Total Hasil Pencarian: $totalResults</h2>";
         foreach ($results as $instance) {
             $fileUuid = $instance['FileUuid'];
             $fileSize = $instance['FileSize'];

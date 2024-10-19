@@ -69,7 +69,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ], JSON_PRETTY_PRINT);
             echo '</pre>';
 
-            echo '<img src="http://localhost:8042/instances/' . $fileUuid . '/preview" alt="Preview Gambar" />';
+            $imageUrl = 'http://localhost:8042/instances/' . $fileUuid . '/render';
+
+            echo '<img src="' . $imageUrl . '" alt="Gambar DICOM" style="max-width: 100%; height: auto;" />';
         }
     } else {
         echo 'Tidak ditemukan data untuk kriteria pencarian ini.';

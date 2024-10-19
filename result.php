@@ -68,10 +68,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'Type' => $instance['Type']
             ], JSON_PRETTY_PRINT);
             echo '</pre>';
-
-            $imageUrl = 'http://localhost:8042/instances/' . $fileUuid . '/render';
-
-            echo '<img src="' . $imageUrl . '" alt="Gambar DICOM" style="max-width: 100%; height: auto;" />';
         }
     } else {
         echo 'Tidak ditemukan data untuk kriteria pencarian ini.';

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
 
     <style>
         body {
@@ -57,6 +58,19 @@
 
         .results {
             margin-top: 20px;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            /* Allow text to wrap */
+            word-wrap: break-word;
+            /* Break long words */
+            background-color: #f8f8f8;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            overflow: auto;
+            /* Allow scrolling if necessary */
         }
     </style>
 </head>

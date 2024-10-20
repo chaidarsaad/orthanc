@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
 
     <style>
         body {
@@ -23,7 +22,8 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        h1 {
+        h1,
+        h2 {
             text-align: center;
         }
 
@@ -62,15 +62,12 @@
 
         pre {
             white-space: pre-wrap;
-            /* Allow text to wrap */
             word-wrap: break-word;
-            /* Break long words */
             background-color: #f8f8f8;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
             overflow: auto;
-            /* Allow scrolling if necessary */
         }
     </style>
 </head>
@@ -81,10 +78,10 @@
             <label for="patientID">Patient ID:</label>
             <input type="text" id="patientID" name="patientID" required>
 
-            <label for="startDate">Start Date (YYYY-MM-DD):</label>
+            <label for="startDate">Start Date (MM-DD-YYYY):</label>
             <input type="date" id="startDate" name="startDate" required>
 
-            <label for="endDate">End Date (YYYY-MM-DD):</label>
+            <label for="endDate">End Date (MM-DD-YYYY):</label>
             <input type="date" id="endDate" name="endDate" required>
 
             <input type="submit" value="Cari">
@@ -145,7 +142,7 @@
                 }
 
                 if (!empty($results)) {
-                    echo '<h1>Hasil Pencarian</h1>';
+                    echo "<h1>Hasil Pencarian Pasien ID: $patientID</h1>";
                     $totalResults = count($results);
                     echo "<h2>Total Hasil Pencarian: $totalResults</h2>";
                     foreach ($results as $instance) {

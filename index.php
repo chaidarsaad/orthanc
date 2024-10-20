@@ -79,10 +79,10 @@
             <label for="patientID">Patient ID:</label>
             <input type="text" id="patientID" name="patientID" required>
 
-            <label for="startDate">Start Date (YYYY-MM-DD):</label>
+            <label for="startDate">Start Date (MM-DD-YYYY):</label>
             <input type="date" id="startDate" name="startDate" required>
 
-            <label for="endDate">End Date (YYYY-MM-DD):</label>
+            <label for="endDate">End Date (MM-DD-YYYY):</label>
             <input type="date" id="endDate" name="endDate" required>
 
             <input type="submit" value="Cari">
@@ -103,7 +103,7 @@
                 $period = new DatePeriod($start, $interval, $end->modify('+1 day'));
 
                 foreach ($period as $date) {
-                    $currentDate = $date->format('Y-m-d');
+                    $currentDate = $date->format('m-d-Y');
 
                     $url = 'http://localhost:8042/tools/find';
                     $data = json_encode([
@@ -144,11 +144,11 @@
 
                 if (!empty($results)) {
                     echo "<h1>Hasil Pencarian Pasien ID: $patientID</h1>";
-                    $startDateFormatted = (new DateTime($startDate))->format('Y-m-d');
-                    $endDateFormatted = (new DateTime($endDate))->format('Y-m-d');
+                    $startDateFormatted = (new DateTime($startDate))->format('m-d-Y');
+                    $endDateFormatted = (new DateTime($endDate))->format('m-d-Y');
                     echo "<h2>Start Date: $startDateFormatted | End Date: $endDateFormatted</h2>";
                     $totalResults = count($results);
-                    echo "<h3>Total Hasil Pencarian: $totalResults</h3>";
+                    echo "<h3>Total Hasil Pencarian: $totalResults</h2>";
                     foreach ($results as $instance) {
                         $fileUuid = $instance['FileUuid'];
                         $fileSize = $instance['FileSize'];

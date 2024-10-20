@@ -61,17 +61,14 @@
             margin-top: 20px;
         }
 
-        .scrollable {
-            overflow-x: auto;
-            white-space: nowrap;
-        }
-
         pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
             background-color: #f8f8f8;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            margin: 0;
+            overflow: auto;
         }
     </style>
 </head>
@@ -156,7 +153,6 @@
                         $fileUuid = $instance['FileUuid'];
                         $fileSize = $instance['FileSize'];
 
-                        echo '<div class="scrollable">';
                         echo '<pre>';
                         echo json_encode([
                             'FileSize' => $fileSize,
@@ -168,7 +164,6 @@
                             'Type' => $instance['Type']
                         ], JSON_PRETTY_PRINT);
                         echo '</pre>';
-                        echo '</div>';
                     }
                 } else {
                     echo 'Tidak ditemukan data untuk kriteria pencarian ini.';

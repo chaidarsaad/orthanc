@@ -67,13 +67,11 @@
         }
 
         pre {
-            white-space: pre-wrap;
-            word-wrap: break-word;
             background-color: #f8f8f8;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            overflow: auto;
+            margin: 0;
         }
     </style>
 </head>

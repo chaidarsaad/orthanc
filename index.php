@@ -62,13 +62,12 @@
         }
 
         pre {
-            white-space: pre-wrap;
-            word-wrap: break-word;
+            white-space: nowrap;
+            overflow-x: auto;
             background-color: #f8f8f8;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
-            overflow: auto;
         }
     </style>
 </head>

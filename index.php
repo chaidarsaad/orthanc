@@ -63,7 +63,6 @@
 
         .scrollable {
             overflow-x: auto;
-            /* Mengaktifkan scroll horizontal */
             white-space: nowrap;
             max-width: 100%;
         }
@@ -76,6 +75,8 @@
             margin: 0;
             display: inline-block;
             max-width: calc(100% - 20px);
+            overflow-wrap: break-word;
+            word-break: break-all;
         }
     </style>
 </head>

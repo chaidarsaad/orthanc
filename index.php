@@ -135,8 +135,12 @@
                     }
 
                     $result = json_decode($response, true);
+
                     if (!empty($result)) {
-                        $results = array_merge($results, $result);
+                        foreach ($result as $instance) {
+                            $instance['SearchDate'] = $currentDate;
+                            $results[] = $instance;
+                        }
                     }
 
                     curl_close($ch);
@@ -149,10 +153,13 @@
                     echo "<h2>Start Date: $startDateFormatted | End Date: $endDateFormatted</h2>";
                     $totalResults = count($results);
                     echo "<h3>Total Hasil Pencarian: $totalResults</h3>";
+
                     foreach ($results as $instance) {
                         $fileUuid = $instance['FileUuid'];
                         $fileSize = $instance['FileSize'];
+                        $searchDate = $instance['SearchDate'];
 
+                        echo "<h4>Hasil untuk tanggal: $searchDate</h4>";
                         echo '<pre>';
                         echo json_encode([
                             'FileSize' => $fileSize,

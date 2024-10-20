@@ -77,13 +77,13 @@
     <div class="container">
         <form action="" method="post">
             <label for="patientID">Patient ID:</label>
-            <input type="text" id="patientID" name="patientID" required>
+            <input type="text" id="patientID" name="patientID" value="<?php echo isset($_POST['patientID']) ? htmlspecialchars($_POST['patientID']) : ''; ?>" required>
 
             <label for="startDate">Start Date (MM-DD-YYYY):</label>
-            <input type="date" id="startDate" name="startDate" required>
+            <input type="date" id="startDate" name="startDate" value="<?php echo isset($_POST['startDate']) ? htmlspecialchars($_POST['startDate']) : ''; ?>" required>
 
             <label for="endDate">End Date (MM-DD-YYYY):</label>
-            <input type="date" id="endDate" name="endDate" required>
+            <input type="date" id="endDate" name="endDate" value="<?php echo isset($_POST['endDate']) ? htmlspecialchars($_POST['endDate']) : ''; ?>" required>
 
             <input type="submit" value="Cari">
         </form>
@@ -149,35 +149,21 @@
                     echo "<h2>Start Date: $startDateFormatted | End Date: $endDateFormatted</h2>";
                     $totalResults = count($results);
                     echo "<h3>Total Hasil Pencarian: $totalResults</h3>";
-
                     foreach ($results as $instance) {
-                        $studyID = $instance['ID'];
-                        $studyUrl = 'http://localhost:8042/studies/' . $studyID;
+                        $fileUuid = $instance['FileUuid'];
+                        $fileSize = $instance['FileSize'];
 
-                        $chStudy = curl_init($studyUrl);
-                        curl_setopt($chStudy, CURLOPT_RETURNTRANSFER, true);
-                        $studyResponse = curl_exec($chStudy);
-
-                        if (curl_errno($chStudy)) {
-                            echo 'cURL Study Error: ' . curl_error($chStudy);
-                            curl_close($chStudy);
-                            exit;
-                        }
-
-                        $studyResult = json_decode($studyResponse, true);
-                        curl_close($chStudy);
-
-                        if (!empty($studyResult)) {
-                            $studyDate = $studyResult['MainDicomTags']['StudyDate'];
-                            $patientStudyID = $studyResult['ParentPatient'];
-
-                            echo '<pre>';
-                            echo json_encode([
-                                'PatientID' => $patientStudyID,
-                                'StudyDate' => $studyDate
-                            ], JSON_PRETTY_PRINT);
-                            echo '</pre>';
-                        }
+                        echo '<pre>';
+                        echo json_encode([
+                            'FileSize' => $fileSize,
+                            'FileUuid' => $fileUuid,
+                            'ID' => $instance['ID'],
+                            'IndexInSeries' => $instance['IndexInSeries'],
+                            'MainDicomTags' => $instance['MainDicomTags'],
+                            'ParentSeries' => $instance['ParentSeries'],
+                            'Type' => $instance['Type']
+                        ], JSON_PRETTY_PRINT);
+                        echo '</pre>';
                     }
                 } else {
                     echo 'Tidak ditemukan data untuk kriteria pencarian ini.';

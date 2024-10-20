@@ -152,9 +152,13 @@
                     foreach ($results as $instance) {
                         $fileUuid = $instance['FileUuid'];
                         $fileSize = $instance['FileSize'];
+                        $studyDate = $instance['MainDicomTags']['StudyDate'];
+                        $patientID = $instance['MainDicomTags']['PatientID'];
 
                         echo '<pre>';
                         echo json_encode([
+                            'PatientID' => $patientID,
+                            'StudyDate' => $studyDate,
                             'FileSize' => $fileSize,
                             'FileUuid' => $fileUuid,
                             'ID' => $instance['ID'],

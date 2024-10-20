@@ -64,7 +64,6 @@
         .scrollable {
             overflow-x: auto;
             white-space: nowrap;
-            max-width: 100%;
         }
 
         pre {
@@ -73,10 +72,6 @@
             border: 1px solid #ddd;
             border-radius: 4px;
             margin: 0;
-            display: inline-block;
-            max-width: calc(100% - 20px);
-            overflow-wrap: break-word;
-            word-break: break-all;
         }
     </style>
 </head>

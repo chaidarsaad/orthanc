@@ -79,10 +79,10 @@
             <label for="patientID">Patient ID:</label>
             <input type="text" id="patientID" name="patientID" required>
 
-            <label for="startDate">Start Date (MM-DD-YYYY):</label>
+            <label for="startDate">Start Date (YYYY-MM-DD):</label>
             <input type="date" id="startDate" name="startDate" required>
 
-            <label for="endDate">End Date (MM-DD-YYYY):</label>
+            <label for="endDate">End Date (YYYY-MM-DD):</label>
             <input type="date" id="endDate" name="endDate" required>
 
             <input type="submit" value="Cari">
@@ -103,7 +103,7 @@
                 $period = new DatePeriod($start, $interval, $end->modify('+1 day'));
 
                 foreach ($period as $date) {
-                    $currentDate = $date->format('m-d-Y');
+                    $currentDate = $date->format('Y-m-d');
 
                     $url = 'http://localhost:8042/tools/find';
                     $data = json_encode([
@@ -144,16 +144,16 @@
 
                 if (!empty($results)) {
                     echo "<h1>Hasil Pencarian Pasien ID: $patientID</h1>";
-                    $startDateFormatted = (new DateTime($startDate))->format('m-d-Y');
-                    $endDateFormatted = (new DateTime($endDate))->format('m-d-Y');
+                    $startDateFormatted = (new DateTime($startDate))->format('Y-m-d');
+                    $endDateFormatted = (new DateTime($endDate))->format('Y-m-d');
                     echo "<h2>Start Date: $startDateFormatted | End Date: $endDateFormatted</h2>";
                     $totalResults = count($results);
-                    echo "<h3>Total Hasil Pencarian: $totalResults</h2>";
+                    echo "<h3>Total Hasil Pencarian: $totalResults</h3>";
                     foreach ($results as $instance) {
                         $fileUuid = $instance['FileUuid'];
                         $fileSize = $instance['FileSize'];
-                        $studyDate = $instance['MainDicomTags']['StudyDate'];
-                        $patientID = $instance['MainDicomTags']['PatientID'];
+                        $studyDate = $instance['MainDicomTags']['StudyDate'] ?? 'N/A';
+                        $patientID = $instance['MainDicomTags']['PatientID'] ?? 'N/A';
 
                         echo '<pre>';
                         echo json_encode([

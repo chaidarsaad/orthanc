@@ -23,7 +23,8 @@
         }
 
         h1,
-        h2 {
+        h2,
+        h3 {
             text-align: center;
         }
 
@@ -143,8 +144,9 @@
 
                 if (!empty($results)) {
                     echo "<h1>Hasil Pencarian Pasien ID: $patientID</h1>";
+                    echo "<h2>Start Date: $startDate | End Date: $endDate</h2>";
                     $totalResults = count($results);
-                    echo "<h2>Total Hasil Pencarian: $totalResults</h2>";
+                    echo "<h3>Total Hasil Pencarian: $totalResults</h2>";
                     foreach ($results as $instance) {
                         $fileUuid = $instance['FileUuid'];
                         $fileSize = $instance['FileSize'];

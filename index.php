@@ -148,26 +148,36 @@
                     $endDateFormatted = (new DateTime($endDate))->format('m-d-Y');
                     echo "<h2>Start Date: $startDateFormatted | End Date: $endDateFormatted</h2>";
                     $totalResults = count($results);
-                    echo "<h3>Total Hasil Pencarian: $totalResults</h2>";
-                    foreach ($results as $instance) {
-                        $fileUuid = $instance['FileUuid'];
-                        $fileSize = $instance['FileSize'];
-                        $studyDate = $instance['MainDicomTags']['StudyDate'] ?? 'N/A';
-                        $patientID = $instance['MainDicomTags']['PatientID'] ?? 'N/A';
+                    echo "<h3>Total Hasil Pencarian: $totalResults</h3>";
 
-                        echo '<pre>';
-                        echo json_encode([
-                            'PatientID' => $patientID,
-                            'StudyDate' => $studyDate,
-                            'FileSize' => $fileSize,
-                            'FileUuid' => $fileUuid,
-                            'ID' => $instance['ID'],
-                            'IndexInSeries' => $instance['IndexInSeries'],
-                            'MainDicomTags' => $instance['MainDicomTags'],
-                            'ParentSeries' => $instance['ParentSeries'],
-                            'Type' => $instance['Type']
-                        ], JSON_PRETTY_PRINT);
-                        echo '</pre>';
+                    foreach ($results as $instance) {
+                        $studyID = $instance['ID'];
+                        $studyUrl = 'http://localhost:8042/studies/' . $studyID;
+
+                        $chStudy = curl_init($studyUrl);
+                        curl_setopt($chStudy, CURLOPT_RETURNTRANSFER, true);
+                        $studyResponse = curl_exec($chStudy);
+
+                        if (curl_errno($chStudy)) {
+                            echo 'cURL Study Error: ' . curl_error($chStudy);
+                            curl_close($chStudy);
+                            exit;
+                        }
+
+                        $studyResult = json_decode($studyResponse, true);
+                        curl_close($chStudy);
+
+                        if (!empty($studyResult)) {
+                            $studyDate = $studyResult['MainDicomTags']['StudyDate'];
+                            $patientStudyID = $studyResult['ParentPatient'];
+
+                            echo '<pre>';
+                            echo json_encode([
+                                'PatientID' => $patientStudyID,
+                                'StudyDate' => $studyDate
+                            ], JSON_PRETTY_PRINT);
+                            echo '</pre>';
+                        }
                     }
                 } else {
                     echo 'Tidak ditemukan data untuk kriteria pencarian ini.';

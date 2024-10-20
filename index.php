@@ -144,7 +144,9 @@
 
                 if (!empty($results)) {
                     echo "<h1>Hasil Pencarian Pasien ID: $patientID</h1>";
-                    echo "<h2>Start Date: $startDate | End Date: $endDate</h2>";
+                    $startDateFormatted = (new DateTime($startDate))->format('m-d-Y');
+                    $endDateFormatted = (new DateTime($endDate))->format('m-d-Y');
+                    echo "<h2>Start Date: $startDateFormatted | End Date: $endDateFormatted</h2>";
                     $totalResults = count($results);
                     echo "<h3>Total Hasil Pencarian: $totalResults</h2>";
                     foreach ($results as $instance) {

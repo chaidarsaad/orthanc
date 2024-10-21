@@ -163,12 +163,12 @@
                         echo '</pre>';
 
                         // Button Explorer
-                        echo '<a href="http://localhost:8042/app/explorer.html#patient?uuid=' . $study['ID'] . '" target="_blank">
+                        echo '<a href="http://localhost:8042/app/explorer.html#patient?uuid=' . $study['ParentPatient'] . '" target="_blank">
                                 <button type="button">Explorer</button>
                               </a>';
 
                         // Button VolView
-                        echo '<a href="http://localhost:8042/volview/index.html?names=[archive.zip]&urls=[../studies/' . $study['ParentPatient'] . '/archive]" target="_blank">
+                        echo '<a href="http://localhost:8042/volview/index.html?names=[archive.zip]&urls=[../studies/' . $study['ID'] . '/archive]" target="_blank">
                                 <button type="button">VolView</button>
                               </a>';
                     }

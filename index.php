@@ -160,6 +160,7 @@
                         echo json_encode($study, JSON_PRETTY_PRINT);
                         echo '</pre>';
 
+                        echo '<div class="button-group">';
                         echo '<a href="http://localhost:8042/app/explorer.html#patient?uuid=' . $study['ParentPatient'] . '" target="_blank">
                                 <button type="button">Explorer</button>
                               </a>';
@@ -167,6 +168,7 @@
                         echo '<a href="http://localhost:8042/volview/index.html?names=[archive.zip]&urls=[../studies/' . $study['ID'] . '/archive]" target="_blank">
                                 <button type="button">VolView</button>
                               </a>';
+                        echo '</div>';
                     }
                 } else {
                     echo 'Tidak ditemukan data untuk kriteria pencarian ini.';

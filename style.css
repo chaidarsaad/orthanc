@@ -63,23 +63,31 @@ pre {
     overflow: auto;
 }
 
+/* Style for buttons */
 .button-group {
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
 }
 
-button {
-    padding: 10px 20px;
-    background-color: #5cb85c;
+.button-group a {
+    width: 48%;
+    text-align: center;
+    text-decoration: none;
+}
+
+.explorer-button,
+.volview-button {
+    padding: 10px;
+    background: #5cb85c;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    text-align: center;
-    width: 48%;
+    width: 100%;
 }
 
-button:hover {
-    background-color: #4cae4c;
+.explorer-button:hover,
+.volview-button:hover {
+    background: #4cae4c;
 }

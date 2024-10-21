@@ -158,8 +158,8 @@
                         echo "<h4>Hasil Studi untuk tanggal: " . $study['MainDicomTags']['StudyDate'] . "</h4>";
                         echo '<pre>';
                         echo json_encode($study, JSON_PRETTY_PRINT);
-                        echo $study['ID'];
-                        echo $study['ParentPatient'];
+                        echo "ID: " . $study['ID'];
+                        echo "ParentPatient: " . $study['ParentPatient'];
                         echo '</pre>';
 
                         // Button Explorer

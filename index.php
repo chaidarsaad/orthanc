@@ -129,15 +129,13 @@
                     $startDateFormatted = (new DateTime($startDate))->format('Ymd');
                     $endDateFormatted = (new DateTime($endDate))->format('Ymd');
                     echo "<h2>Start Date: $startDateFormatted | End Date: $endDateFormatted</h2>";
-                    $totalResults = count($results);
-                    echo "<h3>Total Hasil Pencarian: $totalResults</h3>";
 
                     foreach ($results as $instance) {
                         $fileUuid = $instance['FileUuid'];
                         $fileSize = $instance['FileSize'];
                         $searchDate = $instance['SearchDate'];
 
-                        echo "<h4>Hasil untuk tanggal: $searchDate</h4>";
+                        echo "<h4>Hasil Instance untuk tanggal: $searchDate</h4>";
                         echo '<pre>';
                         echo json_encode([
                             'FileSize' => $fileSize,
@@ -158,7 +156,7 @@
                 if (!empty($studiesResults)) {
                     echo "<h3>Hasil dari Level Studi:</h3>";
                     foreach ($studiesResults as $study) {
-                        echo "<h4>Studi untuk tanggal: " . $study['MainDicomTags']['StudyDate'] . "</h4>";
+                        echo "<h4>Hasil Studi untuk tanggal: " . $study['MainDicomTags']['StudyDate'] . "</h4>";
                         echo '<pre>';
                         echo json_encode($study, JSON_PRETTY_PRINT);
                         echo '</pre>';

@@ -154,7 +154,6 @@
 
                 // Display Study Data
                 if (!empty($studiesResults)) {
-                    echo "<h3>Hasil dari Level Studi:</h3>";
                     foreach ($studiesResults as $study) {
                         echo "<h4>Hasil Studi untuk tanggal: " . $study['MainDicomTags']['StudyDate'] . "</h4>";
                         echo '<pre>';

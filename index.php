@@ -160,14 +160,15 @@
                         echo json_encode($study, JSON_PRETTY_PRINT);
                         echo '</pre>';
 
-                        echo '<div>';
-                        echo "<a href='http://localhost:8042/app/explorer.html#patient?uuid=$parentPatientUuid' target='_blank'>
-                                <button type='button'>Explorer</button>
-                              </a>";
-                        echo "<a href='http://localhost:8042/volview/index.html?names=[archive.zip]&urls=[../studies/$studyID/archive]' target='_blank'>
-                                <button type='button'>Volview</button>
-                              </a>";
-                        echo '</div>';
+                        // Button Explorer
+                        echo '<a href="http://localhost:8042/app/explorer.html#patient?uuid=' . $parentPatient . '" target="_blank">
+                                <button type="button">Explorer</button>
+                              </a>';
+
+                        // Button VolView
+                        echo '<a href="http://localhost:8042/volview/index.html?names=[archive.zip]&urls=[../studies/' . $studyID . '/archive]" target="_blank">
+                                <button type="button">VolView</button>
+                              </a>';
                     }
                 } else {
                     echo 'Tidak ditemukan data untuk kriteria pencarian ini.';

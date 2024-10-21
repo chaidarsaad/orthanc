@@ -158,16 +158,12 @@
                         echo "<h4>Hasil Studi untuk tanggal: " . $study['MainDicomTags']['StudyDate'] . "</h4>";
                         echo '<pre>';
                         echo json_encode($study, JSON_PRETTY_PRINT);
-                        echo "ID: " . $study['ID'];
-                        echo "ParentPatient: " . $study['ParentPatient'];
                         echo '</pre>';
 
-                        // Button Explorer
                         echo '<a href="http://localhost:8042/app/explorer.html#patient?uuid=' . $study['ParentPatient'] . '" target="_blank">
                                 <button type="button">Explorer</button>
                               </a>';
 
-                        // Button VolView
                         echo '<a href="http://localhost:8042/volview/index.html?names=[archive.zip]&urls=[../studies/' . $study['ID'] . '/archive]" target="_blank">
                                 <button type="button">VolView</button>
                               </a>';
